@@ -67,6 +67,14 @@ Every lab therefore contains:
 - 🛠️ Troubleshooting clues
 - 🎤 Interview questions
 
+## 🗺️ Visual Lab Diagram
+
+The first completed lab combines the major concepts into one end-to-end flow:
+
+**VLAN → Trunk → Router-on-a-Stick → DHCP → Default Route → PAT → ISP → Loopback 8.8.8.8**
+
+![VLAN + Router-on-a-Stick + DHCP + PAT Lab](./labs/01-vlan-router-on-stick-dhcp-pat/topology.svg)
+
 ---
 
 **Built while learning — one lab at a time. 🚀**
