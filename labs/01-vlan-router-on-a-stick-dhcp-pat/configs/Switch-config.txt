@@ -1,0 +1,37 @@
+! Switch - VLANs, access ports and trunk
+!
+enable
+configure terminal
+
+vlan 10
+ name HR
+ exit
+
+vlan 20
+ name IT
+ exit
+
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+ exit
+
+interface fa0/2
+ switchport mode access
+ switchport access vlan 10
+ exit
+
+interface fa0/4
+ switchport mode access
+ switchport access vlan 20
+ exit
+
+interface fa0/3
+ switchport mode trunk
+ exit
+
+end
+
+! Verification:
+! show vlan brief
+! show interfaces trunk
