@@ -1,0 +1,57 @@
+! Lab 01 - R1 configuration
+! Router-on-a-Stick + DHCP + PAT
+
+enable
+configure terminal
+
+interface g0/0
+ no shutdown
+exit
+
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ ip nat inside
+exit
+
+interface g0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+ ip nat inside
+exit
+
+interface g0/1
+ ip address 200.1.1.1 255.255.255.0
+ ip nat outside
+ no shutdown
+exit
+
+ip dhcp excluded-address 192.168.10.1
+ip dhcp pool VLAN10
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 8.8.8.8
+exit
+
+ip dhcp excluded-address 192.168.20.1
+ip dhcp pool VLAN20
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 8.8.8.8
+exit
+
+access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 1 permit 192.168.20.0 0.0.0.255
+
+ip nat inside source list 1 interface g0/1 overload
+ip route 0.0.0.0 0.0.0.0 200.1.1.2
+
+end
+write memory
+
+! Verification:
+! show ip interface brief
+! show ip dhcp binding
+! show ip route
+! show ip nat translations
+! show ip nat statistics
