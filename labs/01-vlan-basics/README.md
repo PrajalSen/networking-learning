@@ -21,6 +21,10 @@ The goal is to separate the departments logically using VLANs without using a ro
 
 ## 🌐 Topology
 
+![VLAN Basics Topology](./topology.svg)
+
+### Logical View
+
 ```text
 PC1 (HR) -------- Fa0/1 ┐
                          │
@@ -31,6 +35,8 @@ PC3 (IT) -------- Fa0/3 ┘
 VLAN 10 → HR
 VLAN 20 → IT
 ```
+
+> **Lab rule:** PC1/PC2 should communicate because they are in VLAN 10. PC1/PC3 should not communicate because VLAN 10 and VLAN 20 are isolated at Layer 2 and no Layer 3 routing is configured.
 
 ---
 
