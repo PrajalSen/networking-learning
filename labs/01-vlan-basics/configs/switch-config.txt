@@ -1,0 +1,32 @@
+enable
+configure terminal
+
+! Create VLAN 10 for HR
+vlan 10
+ name HR
+exit
+
+! Create VLAN 20 for IT
+vlan 20
+ name IT
+exit
+
+! Assign HR PCs to VLAN 10
+interface range fa0/1 - 2
+ switchport mode access
+ switchport access vlan 10
+exit
+
+! Assign IT PC to VLAN 20
+interface fa0/3
+ switchport mode access
+ switchport access vlan 20
+exit
+
+end
+write memory
+
+! Verification commands
+show vlan brief
+show interfaces status
+show mac address-table
