@@ -1,0 +1,39 @@
+! Lab 01 - Switch configuration
+! VLAN 10 = HR | VLAN 20 = IT
+
+enable
+configure terminal
+
+vlan 10
+ name HR
+exit
+
+vlan 20
+ name IT
+exit
+
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+
+interface fa0/2
+ switchport mode access
+ switchport access vlan 10
+exit
+
+interface fa0/4
+ switchport mode access
+ switchport access vlan 20
+exit
+
+interface fa0/3
+ switchport mode trunk
+exit
+
+end
+write memory
+
+! Verification:
+! show vlan brief
+! show interfaces trunk
